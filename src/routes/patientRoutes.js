@@ -4,7 +4,8 @@ const patientController = require('../controllers/patientController')
 
 router.post('/registerPatient', patientController.registerPatient);
 router.post('/addTriage/:id', patientController.submitTriage);
-router.get('/getPatientDetails/:id', patientController.getPatientTriage);
-router.get('/getPatientList', patientController.getPatientList);
+router.get('/patientDetails/:patientId', patientController.getPatientTriage);
+router.get('/patientList', patientController.getPatientList);
+router.get('/patientList/triage', patientController.getPatientListWithTriage)
 
 module.exports = router;
