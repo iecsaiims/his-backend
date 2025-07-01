@@ -11,9 +11,11 @@ const { sequelize } = require('./src/models');
 
 const authRoutes = require('./src/routes/authRoutes')
 const patientRoutes = require('./src/routes/patientRoutes')
+const primaryAssessmentRoutes = require('./src/routes/primaryAssessmentRoutes')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/patient', patientRoutes)
+app.use('/api/primary-assessment', primaryAssessmentRoutes)
 
 
 const PORT = process.env.PORT || 3000;

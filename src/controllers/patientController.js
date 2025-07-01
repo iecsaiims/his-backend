@@ -86,4 +86,28 @@ exports.getPatientListWithTriage = async(req , res) => {
     }  
 }
 
+exports.getAllTriageRecords = async (req, res) => {
+  try {
+    const triages = await PatientTriage.findAll({
+      attributes: [
+        'triage',
+        'triageNotes',
+        'date',
+        'time',
+        'patient_id'
+      ],
+      order: [['createdAt', 'DESC']] // latest first
+    });
+
+    res.status(200).json({
+      message: 'Triage records fetched successfully',
+      data: triages
+    });
+
+  } catch (err) {
+    console.error('Error fetching triage records:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 

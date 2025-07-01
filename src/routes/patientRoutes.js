@@ -7,5 +7,6 @@ router.post('/addTriage/:id', patientController.submitTriage);
 router.get('/patientDetails/:patientId', patientController.getPatientTriage);
 router.get('/patientList', patientController.getPatientList);
 router.get('/patientList/triage', patientController.getPatientListWithTriage)
+router.get('/all-triages', patientController.getAllTriageRecords);
 
 module.exports = router;
