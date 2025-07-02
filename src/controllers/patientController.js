@@ -89,6 +89,9 @@ exports.getPatientListWithTriage = async(req , res) => {
 exports.getAllTriageRecords = async (req, res) => {
   try {
     const triages = await PatientTriage.findAll({
+      where: {
+        patient_id: req.params.id
+      },
       attributes: [
         'triage',
         'triageNotes',
