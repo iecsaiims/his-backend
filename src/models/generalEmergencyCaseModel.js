@@ -45,6 +45,10 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
   submitted_by:{
     type:DataTypes.STRING,
     allowNull:false
+  },
+  designation:{
+    type: DataTypes.STRING,
+    allowNull:false
   }
 
 }, {

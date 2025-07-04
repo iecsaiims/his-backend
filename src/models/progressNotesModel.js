@@ -46,6 +46,10 @@ const ProgressNotes = sequelize.define('ProgressNotes', {
   submitted_by:{
     type:DataTypes.STRING,
     allowNull:false
+  },
+  designation:{
+    type: DataTypes.STRING,
+    allowNull:false
   }
 }, {
   tableName: 'progress_notes',

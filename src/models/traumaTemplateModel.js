@@ -126,6 +126,10 @@ const TraumaTemplate = sequelize.define('TraumaTemplate', {
   submitted_by:{
     type:DataTypes.STRING,
     allowNull:false
+  },
+  designation:{
+    type: DataTypes.STRING,
+    allowNull:false
   }
 }, {
   tableName: 'trauma_templates',

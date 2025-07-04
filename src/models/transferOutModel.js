@@ -67,58 +67,14 @@ const TransferOut = sequelize.define('TransferOut', {
   referring_physician_designation: {
     type: DataTypes.STRING
   },
-
-  // Discharge Summary Section
-  discharge_clinical_course: {
-    type: DataTypes.TEXT
+  submitted_by:{
+    type: DataTypes.STRING,
+    allowNull:false
   },
-  discharge_provisional_diagnosis: {
-    type: DataTypes.TEXT
-  },
-  pulse: {
-    type: DataTypes.STRING
-  },
-  blood_pressure: {
-    type: DataTypes.STRING
-  },
-  respiratory_rate: {
-    type: DataTypes.STRING
-  },
-  spo2: {
-    type: DataTypes.STRING
-  },
-  pain_score: {
-    type: DataTypes.STRING
-  },
-  gcs: {
-    type: DataTypes.STRING
-  },
-  discharge_advice: {
-    type: DataTypes.TEXT
-  },
-
-  // LAMA Consent Section
-  lama_patient_name: {
-    type: DataTypes.STRING
-  },
-  lama_age: {
-    type: DataTypes.STRING
-  },
-  lama_sex: {
-    type: DataTypes.STRING
-  },
-  lama_guardian_name: {
-    type: DataTypes.STRING
-  },
-  lama_address: {
-    type: DataTypes.TEXT
-  },
-
-  documents_uploaded: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
+  designation:{
+    type: DataTypes.STRING,
+    allowNull:false
   }
-
 }, {
   tableName: 'transfer_out',
   underscored: true
