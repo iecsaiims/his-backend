@@ -15,7 +15,7 @@ const TraumaTemplate = sequelize.define('TraumaTemplate', {
   },
 
   aho: {
-    type: DataTypes.ENUM('Road traffic accident', 'Assault', 'Fall', 'Others'),
+    type: DataTypes.STRING,
     allowNull: true
   },
 

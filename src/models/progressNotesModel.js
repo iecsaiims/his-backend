@@ -43,6 +43,9 @@ const ProgressNotes = sequelize.define('ProgressNotes', {
   imaging:{
     type:DataTypes.TEXT
   },
+  further_management_plan:{
+    type:DataTypes.TEXT
+  },
   submitted_by:{
     type:DataTypes.STRING,
     allowNull:false

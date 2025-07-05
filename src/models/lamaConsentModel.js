@@ -30,9 +30,8 @@ const LamaConsent = sequelize.define('LamaConsent', {
     type: DataTypes.TEXT
   },
 
-  documents_uploaded: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
+  lama_consent_document: {
+    type: DataTypes.TEXT
   }
 
 }, {

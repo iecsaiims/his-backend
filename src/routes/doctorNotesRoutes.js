@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const {authMiddleware} = require('../middlewares/authMiddleware')
+const upload = require('../middlewares/uploadMiddleware');
 const doctorNotesController = require('../controllers/doctorNotesController')
+
+    const uploadFields = upload.fields([
+        { name: 'lama_consent_document'}
+    ]);
 
 
 router.post('/create-emergencycare', authMiddleware, doctorNotesController.createGeneralEmergencyCare);
@@ -14,6 +19,7 @@ router.post('/dischage-summary', doctorNotesController.createDischargeSummary);
 router.get('/dischage-summary/:patientId', doctorNotesController.getDischargeSummaryByPatient);
 router.post('/transfer-out', doctorNotesController.createTransferOut);
 router.get('/transfer-out/:patientId', doctorNotesController.getTransferOutByPatient);
+router.post('/lama-document', uploadFields, doctorNotesController.createLamaDocument);
 
 
 module.exports = router;

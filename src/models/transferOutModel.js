@@ -61,12 +61,6 @@ const TransferOut = sequelize.define('TransferOut', {
   treatment_received: {
     type: DataTypes.TEXT
   },
-  referring_physician_name: {
-    type: DataTypes.STRING
-  },
-  referring_physician_designation: {
-    type: DataTypes.STRING
-  },
   submitted_by:{
     type: DataTypes.STRING,
     allowNull:false

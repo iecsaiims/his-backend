@@ -206,3 +206,21 @@ exports.getTransferOutByPatient = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.createLamaDocument = async(req, res) => {
+  try{
+    const values = {
+    ...req.body,
+    lama_consent_document: req.files['lama_consent_document'][0].path
+  }
+  const data = await LamaConsent.create(values);
+
+  res.status(201).json({
+      message:'Lama Consent record created successfully',
+      data
+    });
+  }catch(err){
+    console.error('Error fetching records:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
