@@ -10,6 +10,7 @@ const ProgressNotes = require('./progressNotesModel.js')
 const TransferOut = require('./transferOutModel.js')
 const DischargeSummary = require('./dischargeSummayModel.js');
 const LamaConsent = require('./lamaConsentModel.js');
+const Xray = require('./xrayModel.js')
 
 Patient.hasMany(PatientTriage, {foreignKey: 'patient_id', as: 'patientTriage', onDelete: 'CASCADE'});
 PatientTriage.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -35,4 +36,7 @@ DischargeSummary.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 Patient.hasMany(LamaConsent, {foreignKey: 'patient_id', as: 'LamaConsent', onDelete: 'CASCADE'});
 LamaConsent.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
-module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent};
+Patient.hasMany(Xray, {foreignKey: 'patient_id', as: 'Xray', onDelete: 'CASCADE'});
+Xray.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray};

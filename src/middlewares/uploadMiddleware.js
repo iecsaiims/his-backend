@@ -1,15 +1,16 @@
 const multer = require('multer');
-const path = require('path');
+//const path = require('path');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const folder = file.mimetype.startsWith('image/') ? 'images' : 'documents';
-        cb(null, path.join(__dirname, '../uploads/', folder));
+        cb(null, 'uploads/');
+        //const folder = file.mimetype.startsWith('image/') ? 'images' : 'documents';
+        //cb(null, path.join(__dirname, '../uploads/', folder));
     },
     filename:(req, file , cb) =>{
-        const ext = path.extname(file.originalname);
-        const name = path.basename(file.originalname, ext).replace(/\s+/g, '_');
-        cb(null, `${req.patientName}-${Date.now()}-${ext}`);
+       // const ext = path.extname(file.originalname);
+       // const name = path.basename(file.originalname, ext).replace(/\s+/g, '_');
+        cb(null, `${req.body.name}-${Date.now()}-${file.originalname}`);
     }  
 });
 

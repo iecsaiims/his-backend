@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
-const LamaConsent = sequelize.define('LamaConsent', {
+const Xray = sequelize.define('Xray', {
   patient_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -17,27 +17,14 @@ const LamaConsent = sequelize.define('LamaConsent', {
   name: {
     type: DataTypes.STRING
   },
-  age: {
-    type: DataTypes.STRING
-  },
-  sex: {
-    type: DataTypes.STRING
-  },
-  guardian_name: {
-    type: DataTypes.STRING
-  },
-  address: {
-    type: DataTypes.TEXT
-  },
-
-  lama_consent_document: {
+  xray: {
     type: DataTypes.TEXT,
     allowNull:false
   }
 
 }, {
-  tableName: 'lama_consent',
+  tableName: 'xray',
   underscored: true
 });
 
-module.exports = LamaConsent;
+module.exports = Xray;
