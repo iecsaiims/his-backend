@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use('/api/auth',express.json(), authRoutes);
 app.use('/api/patient',express.json(), patientRoutes)
 app.use('/api/primary-assessment',express.json(), primaryAssessmentRoutes)
-app.use('/api/templates', doctorNotesRoutes)
+app.use('/api/templates',express.json(), doctorNotesRoutes)
 
 
 const PORT = process.env.PORT || 3000;

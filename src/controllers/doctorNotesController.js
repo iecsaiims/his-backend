@@ -7,6 +7,12 @@ const LamaConsent = require('../models/lamaConsentModel')
 
 exports.createGeneralEmergencyCare = async (req, res) => {
   try {
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+
     const data = await GeneralEmergencyCare.create({
       ...req.body,
       submitted_by: req.user.user,
@@ -47,6 +53,13 @@ exports.getGeneralEmergencyCareByPatient = async (req, res) => {
 
 exports.createTraumaTemplate = async(req, res) => {
   try{
+
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+
     const data = await TraumaTemplate.create({
       ...req.body,
       submitted_by: req.user.user,
@@ -86,23 +99,32 @@ exports.getTraumaTemplateByPatient = async (req, res) => {
 };
 
 
-exports.createProgressNotes = async(req, res) => {
-  try{
+exports.createProgressNotes = async (req, res) => {
+  try {
+    // 🔍 Sanitize: Convert all "" to null
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+
     const data = await ProgressNotes.create({
       ...req.body,
       submitted_by: req.user.user,
-      designation:req.user.designation
+      designation: req.user.designation
     });
 
     res.status(201).json({
-      message:'Trauma record created successfully',
+      message: 'Trauma record created successfully',
       data
     });
-  }catch(err){
+
+  } catch (err) {
     console.error('Error creating trauma record:', err);
-    res.status(500).json({error:'Internal server error'});
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 exports.getProgressNotesByPatient = async (req, res) => {
   try {
@@ -129,6 +151,13 @@ exports.getProgressNotesByPatient = async (req, res) => {
 
 exports.createDischargeSummary = async(req, res) => {
   try{
+
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+
     const data = await DischargeSummary.create({
       ...req.body,
       submitted_by: req.user.user,
@@ -169,6 +198,12 @@ exports.getDischargeSummaryByPatient = async (req, res) => {
 
 exports.createTransferOut = async(req, res) => {
   try{
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+    
     const data = await TransferOut.create({
       ...req.body,
       submitted_by: req.user.user,

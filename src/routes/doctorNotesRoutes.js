@@ -20,7 +20,7 @@ router.get('/dischage-summary/:patientId',authMiddleware, doctorNotesController.
 router.post('/transfer-out',authMiddleware, doctorNotesController.createTransferOut);
 router.get('/transfer-out/:patientId',authMiddleware, doctorNotesController.getTransferOutByPatient);
 router.post('/lama', upload.single('lama_consent_document'),authMiddleware, doctorNotesController.createLamaConsent);
-router.get('/lama/:patientId',authMiddleware, controller.getLamaConsent);
+router.get('/lama/:patientId',authMiddleware, doctorNotesController.getLamaConsent);
 router.post('/xray',upload.single('xray'),authMiddleware,doctorNotesController.uploadXray )
 
 module.exports = router;
