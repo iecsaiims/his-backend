@@ -11,16 +11,16 @@ const doctorNotesController = require('../controllers/doctorNotesController')
 
 router.post('/create-emergencycare', authMiddleware, doctorNotesController.createGeneralEmergencyCare);
 router.get('/emergency-care/:patientId', authMiddleware, doctorNotesController.getGeneralEmergencyCareByPatient);
-router.post('/trauma-template', doctorNotesController.createTraumaTemplate);
-router.get('/trauma-template/:patientId', doctorNotesController.getTraumaTemplateByPatient);
-router.post('/progress-notes', doctorNotesController.createProgressNotes);
-router.get('/progress-notes/:patientId', doctorNotesController.getProgressNotesByPatient);
-router.post('/dischage-summary', doctorNotesController.createDischargeSummary);
-router.get('/dischage-summary/:patientId', doctorNotesController.getDischargeSummaryByPatient);
-router.post('/transfer-out', doctorNotesController.createTransferOut);
-router.get('/transfer-out/:patientId', doctorNotesController.getTransferOutByPatient);
-router.post('/lama', upload.single('lama_consent_document'), doctorNotesController.createLamaConsent);
-router.get('/lama/:patientId', controller.getLamaConsent);
-router.post('/xray',upload.single('xray'),doctorNotesController.uploadXray )
+router.post('/trauma-template',authMiddleware, doctorNotesController.createTraumaTemplate);
+router.get('/trauma-template/:patientId',authMiddleware, doctorNotesController.getTraumaTemplateByPatient);
+router.post('/progress-notes', authMiddleware,doctorNotesController.createProgressNotes);
+router.get('/progress-notes/:patientId',authMiddleware, doctorNotesController.getProgressNotesByPatient);
+router.post('/dischage-summary', authMiddleware,doctorNotesController.createDischargeSummary);
+router.get('/dischage-summary/:patientId',authMiddleware, doctorNotesController.getDischargeSummaryByPatient);
+router.post('/transfer-out',authMiddleware, doctorNotesController.createTransferOut);
+router.get('/transfer-out/:patientId',authMiddleware, doctorNotesController.getTransferOutByPatient);
+router.post('/lama', upload.single('lama_consent_document'),authMiddleware, doctorNotesController.createLamaConsent);
+router.get('/lama/:patientId',authMiddleware, controller.getLamaConsent);
+router.post('/xray',upload.single('xray'),authMiddleware,doctorNotesController.uploadXray )
 
 module.exports = router;

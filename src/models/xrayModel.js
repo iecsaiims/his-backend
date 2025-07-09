@@ -28,3 +28,4 @@ const Xray = sequelize.define('Xray', {
 });
 
 module.exports = Xray;
+

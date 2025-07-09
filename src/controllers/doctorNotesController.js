@@ -47,7 +47,7 @@ exports.getGeneralEmergencyCareByPatient = async (req, res) => {
 
 exports.createTraumaTemplate = async(req, res) => {
   try{
-    const data = await traumaTemplate.create({
+    const data = await TraumaTemplate.create({
       ...req.body,
       submitted_by: req.user.user,
       designation:req.user.designation
