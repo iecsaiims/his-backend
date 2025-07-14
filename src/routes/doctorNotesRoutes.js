@@ -21,6 +21,15 @@ router.post('/transfer-out',authMiddleware, doctorNotesController.createTransfer
 router.get('/transfer-out/:patientId',authMiddleware, doctorNotesController.getTransferOutByPatient);
 router.post('/lama', upload.single('lama_consent_document'),authMiddleware, doctorNotesController.createLamaConsent);
 router.get('/lama/:patientId',authMiddleware, doctorNotesController.getLamaConsent);
-router.post('/xray',upload.single('xray'),authMiddleware,doctorNotesController.uploadXray )
+// router.post('/other-test', authMiddleware, doctorNotesController.createOtherTest);
+// router.get('/other-test/:patientId', authMiddleware, doctorNotesController.getOtherTestRecords);
+// router.post('/ct-scan', authMiddleware, doctorNotesController.createCTScan);
+// router.get('/ct-scan/:patientId', authMiddleware, doctorNotesController.getCtScanRecords);
+// router.post('/blood-gas', authMiddleware, doctorNotesController.createBloodGas);
+// router.get('/blood-gas/:patientId', authMiddleware, doctorNotesController.getBloodGasRecords);
+// router.post('/troponin', authMiddleware, doctorNotesController.createTroponin);
+// router.get('/troponin/:patientId', authMiddleware, doctorNotesController.getTroponinRecords);
+// router.post('/ecg', authMiddleware, doctorNotesController.createECG);
+// router.get('/ecg/:patientId', authMiddleware, doctorNotesController.getECGRecords);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
-const Xray = sequelize.define('Xray', {
+const OtherTest = sequelize.define('OtherTest', {
   patient_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -14,16 +14,16 @@ const Xray = sequelize.define('Xray', {
   },
 
   // Common Fields
-  xrayType: {
-    type: DataTypes.ENUM('Chest','Pelvis', 'Extremities', 'Other')
+  
+  otherTestType: {
+    type: DataTypes.ENUM('pro BNP', 'D-dimer','CRP','ESR')
   },
-  xrayImage: {
-    type: DataTypes.TEXT,
+  otherTestValue: {
+    type: DataTypes.STRING,
     allowNull:true
   },
-  xrayFindings: {
-    type: DataTypes.TEXT,
-    allowNull:true
+  otherTestInterpretaion: {
+    type: DataTypes.ENUM('Positive', 'Negative')
   },
   submittedBy:{
     type:DataTypes.STRING,
@@ -35,9 +35,9 @@ const Xray = sequelize.define('Xray', {
   }
 
 }, {
-  tableName: 'xray',
+  tableName: 'other_test',
   underscored: true
 });
 
-module.exports = Xray;
+module.exports = OtherTest;
 

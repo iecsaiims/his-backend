@@ -39,7 +39,7 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
   provisional_dx_differentials: {
     type:DataTypes.TEXT,
   },
-  further_management_plan: {
+  emergency_further_management_plan: {
     type:DataTypes.TEXT,
   },
   submitted_by:{

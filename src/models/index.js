@@ -1,6 +1,5 @@
 const sequelize = require('../config/db.js');
 const User = require('./userModel')
-
 const Patient = require('./patientModel');
 const PatientTriage = require('./patientTriageModel');
 const PrimaryAssessment = require('./primaryAssessmetModel');
@@ -10,7 +9,13 @@ const ProgressNotes = require('./progressNotesModel.js')
 const TransferOut = require('./transferOutModel.js')
 const DischargeSummary = require('./dischargeSummayModel.js');
 const LamaConsent = require('./lamaConsentModel.js');
-const Xray = require('./xrayModel.js')
+const Xray = require('./xrayModel.js');
+const Pocus = require('./pocusModel.js');
+const Ecg = require('./ecgModel.js');
+const BloodGas = require('./bloodGasModel.js');
+const Troponin = require('./troponinModel.js');
+const OtherTest = require('./otherTestModel.js');
+const CtScan = require('./ctScanModel.js');
 
 Patient.hasMany(PatientTriage, {foreignKey: 'patient_id', as: 'patientTriage', onDelete: 'CASCADE'});
 PatientTriage.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -39,4 +44,23 @@ LamaConsent.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 Patient.hasMany(Xray, {foreignKey: 'patient_id', as: 'Xray', onDelete: 'CASCADE'});
 Xray.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
-module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray};
+Patient.hasMany(Pocus, {foreignKey: 'patient_id', as: 'Pocus', onDelete: 'CASCADE'});
+Pocus.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(Ecg, {foreignKey: 'patient_id', as: 'Ecg', onDelete: 'CASCADE'});
+Ecg.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(BloodGas, {foreignKey: 'patient_id', as: 'BloodGas', onDelete: 'CASCADE'});
+BloodGas.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(Troponin, {foreignKey: 'patient_id', as: 'Troponin', onDelete: 'CASCADE'});
+Troponin.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(OtherTest, {foreignKey: 'patient_id', as: 'OtherTest', onDelete: 'CASCADE'});
+OtherTest.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(CtScan, {foreignKey: 'patient_id', as: 'CtScan', onDelete: 'CASCADE'});
+CtScan.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+
+module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan};
