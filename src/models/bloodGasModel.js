@@ -3,7 +3,16 @@ const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
 const BloodGas = sequelize.define('BoodGas', {
-
+    
+    patientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Patient,
+            key: 'id'
+        },
+        onDelete: 'CASCADE'
+    },
     sample: {
         type: DataTypes.ENUM('Arterial', 'Venous')
     },

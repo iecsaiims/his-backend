@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
 const LamaConsent = sequelize.define('LamaConsent', {
-  patient_id: {
+  patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -30,10 +30,18 @@ const LamaConsent = sequelize.define('LamaConsent', {
     type: DataTypes.TEXT
   },
 
-  lama_consent_document: {
+  lamaConsentDocument: {
     type: DataTypes.TEXT,
     allowNull:false
-  }
+  },
+    submittedBy:{
+      type:DataTypes.STRING,
+      allowNull:false
+    },
+    designation:{
+      type:DataTypes.STRING,
+      allowNull:false
+    }
 
 }, {
   tableName: 'lama_consent',

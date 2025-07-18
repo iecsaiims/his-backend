@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
 const Troponin = sequelize.define('Troponin', {
-  patient_id: {
+  patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {

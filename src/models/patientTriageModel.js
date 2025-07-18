@@ -47,7 +47,7 @@ const PatientTriage = sequelize.define('PatientTriage', {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  patient_id: {
+  patientId: {
     type: DataTypes.INTEGER,
     references: {
       model: Patient,

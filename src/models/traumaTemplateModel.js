@@ -4,7 +4,7 @@ const Patient = require('./patientModel');
 
 const TraumaTemplate = sequelize.define('TraumaTemplate', {
   // Foreign key to Patient
-  patient_id: {
+  patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {

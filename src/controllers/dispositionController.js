@@ -1,57 +1,9 @@
-const GeneralEmergencyCare = require('../models/generalEmergencyCaseModel');
-const TraumaTemplate =require('../models/traumaTemplateModel')
-const ProgressNotes = require('../models/progressNotesModel');
+const DischargeSummary = require('../models/dischargeSummayModel');
+const TransferOut = require('../models/transferOutModel');
+const LamaConsent = require('../models/lamaConsentModel');
+const fileService = require('../services/fileService');
 
-
-
-
-exports.createGeneralEmergencyCare = async (req, res) => {
-  try {
-    Object.keys(req.body).forEach(key => {
-      if (req.body[key] === '') {
-        req.body[key] = null;
-      }
-    });
-
-    const data = await GeneralEmergencyCare.create({
-      ...req.body,
-      submitted_by: req.user.user,
-      designation:req.user.designation // Injected from token
-    });
-
-    res.status(201).json({
-      message: 'General emergency care record created successfully',
-      data
-    });
-  } catch (err) {
-    console.error('Error creating general emergency care:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-exports.getGeneralEmergencyCareByPatient = async (req, res) => {
-  try {
-    const { patientId } = req.params;
-
-    const records = await GeneralEmergencyCare.findAll({
-      where: { patient_id: patientId }
-    });
-
-    if (!records.length) {
-      return res.status(404).json({ message: 'No records found for this patient' });
-    }
-
-    res.status(200).json({
-      message: 'Records fetched successfully',
-      data: records
-    });
-  } catch (err) {
-    console.error('Error fetching records:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-exports.createTraumaTemplate = async(req, res) => {
+exports.createDischargeSummary = async(req, res) => {
   try{
 
     Object.keys(req.body).forEach(key => {
@@ -60,7 +12,7 @@ exports.createTraumaTemplate = async(req, res) => {
       }
     });
 
-    const data = await TraumaTemplate.create({
+    const data = await DischargeSummary.create({
       ...req.body,
       submitted_by: req.user.user,
       designation:req.user.designation
@@ -76,11 +28,11 @@ exports.createTraumaTemplate = async(req, res) => {
   }
 };
 
-exports.getTraumaTemplateByPatient = async (req, res) => {
+exports.getDischargeSummaryByPatient = async (req, res) => {
   try {
     const { patientId } = req.params;
 
-    const records = await TraumaTemplate.findAll({
+    const records = await DischargeSummary.findAll({
       where: { patient_id: patientId }
     });
 
@@ -98,39 +50,35 @@ exports.getTraumaTemplateByPatient = async (req, res) => {
   }
 };
 
-
-exports.createProgressNotes = async (req, res) => {
-  try {
-    // 🔍 Sanitize: Convert all "" to null
+exports.createTransferOut = async(req, res) => {
+  try{
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
       }
     });
-
-    const data = await ProgressNotes.create({
+    
+    const data = await TransferOut.create({
       ...req.body,
       submitted_by: req.user.user,
-      designation: req.user.designation
+      designation:req.user.designation
     });
 
     res.status(201).json({
-      message: 'Trauma record created successfully',
+      message:'Trauma record created successfully',
       data
     });
-
-  } catch (err) {
+  }catch(err){
     console.error('Error creating trauma record:', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({error:'Internal server error'});
   }
 };
 
-
-exports.getProgressNotesByPatient = async (req, res) => {
+exports.getTransferOutByPatient = async (req, res) => {
   try {
     const { patientId } = req.params;
 
-    const records = await ProgressNotes.findAll({
+    const records = await TransferOut.findAll({
       where: { patient_id: patientId }
     });
 
@@ -149,5 +97,53 @@ exports.getProgressNotesByPatient = async (req, res) => {
 };
 
 
+exports.createLamaConsent = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'LAMA consent document is required.' });
+    }
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+    const lamaConsent = await LamaConsent.create({
+      ...req.body,
+      lamaConsentDocument: req.file.filename,
+      submittedBy: req.user.user,
+      designation:req.user.designation
+    });
+    const response = fileService.attachFileUrl(lamaConsent, req, 'lamaConsentDocument');
+    return res.status(201).json({
+      message: 'LAMA Consent created successfully',
+      data: response
+    });
+  } catch (error) {
+    console.error('Error creating LAMA consent:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 
+// GET all records or by patient_id
+exports.getLamaConsent = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+    if (!patientId) {
+      return res.status(400).json({ message: 'Patient ID is required' });
+    }
+    const records = await LamaConsent.findAll({
+      where: { patient_id: patientId }
+    });
+    if (!records.length) {
+      return res.status(404).json({ message: 'No LAMA consent found for this patient' });
+    }
+    const response = records.map(record =>
+      fileService.attachFileUrl(record, req, 'lamaConsentDocument')
+    );
+    return res.status(200).json({ data: response });
+  } catch (err) {
+    console.error('Error fetching LAMA consent:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

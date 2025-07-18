@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 
 const OtherTest = sequelize.define('OtherTest', {
-  patient_id: {
+  patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -12,17 +12,32 @@ const OtherTest = sequelize.define('OtherTest', {
     },
     onDelete: 'CASCADE'
   },
-
-  // Common Fields
-  
-  otherTestType: {
-    type: DataTypes.ENUM('pro BNP', 'D-dimer','CRP','ESR')
-  },
-  otherTestValue: {
+  proBnpValue: {
     type: DataTypes.STRING,
     allowNull:true
   },
-  otherTestInterpretaion: {
+  proBnpInterpretaion: {
+    type: DataTypes.ENUM('Positive', 'Negative')
+  },
+  dDimerValue: {
+    type: DataTypes.STRING,
+    allowNull:true
+  },
+  dDimerInterpretaion: {
+    type: DataTypes.ENUM('Positive', 'Negative')
+  },
+  crpValue: {
+    type: DataTypes.STRING,
+    allowNull:true
+  },
+  crpInterpretaion: {
+    type: DataTypes.ENUM('Positive', 'Negative')
+  },
+  esrValue: {
+    type: DataTypes.STRING,
+    allowNull:true
+  },
+  esrInterpretaion: {
     type: DataTypes.ENUM('Positive', 'Negative')
   },
   submittedBy:{
