@@ -18,7 +18,7 @@ const OtherTest = sequelize.define('OtherTest', istTimestamps({
     allowNull:true
   },
   proBnpInterpretaion: {
-    type: DataTypes.ENUM('Positive', 'Negative')
+    type: DataTypes.ENUM('Normal', 'Abnormal')
   },
   dDimerValue: {
     type: DataTypes.STRING,
