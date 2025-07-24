@@ -1,12 +1,13 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.js');
+const istTimestamps = require('./baseModel.js');
 
-const Patient = sequelize.define('Patient', {
+const Patient = sequelize.define('Patient', istTimestamps({
   name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  cr_number:{
+  crNumber:{
     type: DataTypes.STRING,
     allowNull:false
   },
@@ -26,6 +27,9 @@ const Patient = sequelize.define('Patient', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  address: {
+    type: DataTypes.TEXT
+  },
   department:{
     type:DataTypes.STRING,
     allowNull:false
@@ -34,15 +38,15 @@ const Patient = sequelize.define('Patient', {
     type:DataTypes.STRING,
     allowNull:false
   },
-  visitDate: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
+  submittedBy:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
-  visitTime: {
-    type: DataTypes.TIME,
-    allowNull: false
+  designation:{
+    type:DataTypes.STRING,
+    allowNull:false
   }
-}, {
+}), {
   tableName: 'patients',
   underscored: true
 });

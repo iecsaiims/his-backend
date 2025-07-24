@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel');
 
-const ProgressNotes = sequelize.define('ProgressNotes', {
+const ProgressNotes = sequelize.define('ProgressNotes', istTimestamps({
   // Foreign key to Patient
   patientId: {
     type: DataTypes.INTEGER,
@@ -46,7 +47,7 @@ const ProgressNotes = sequelize.define('ProgressNotes', {
   progress_further_management_plan:{
     type:DataTypes.TEXT
   },
-  submitted_by:{
+  submittedBy:{
     type:DataTypes.STRING,
     allowNull:false
   },
@@ -54,7 +55,7 @@ const ProgressNotes = sequelize.define('ProgressNotes', {
     type: DataTypes.STRING,
     allowNull:false
   }
-}, {
+}), {
   tableName: 'progress_notes',
   underscored: true
 });

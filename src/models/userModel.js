@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.js');
+const istTimestamps = require('./baseModel.js');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('User', istTimestamps({
   userName: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -22,7 +23,7 @@ const User = sequelize.define('User', {
   designation: {
     type: DataTypes.ENUM('Doctor', 'Nursing Staff', 'Others'),
   },
-}, {
+}), {
   tableName: 'users',
   underscored: true,
 });

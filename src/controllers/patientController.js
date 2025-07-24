@@ -3,8 +3,11 @@ const PatientTriage = require('../models/patientTriageModel');
 
 exports.registerPatient = async(req , res) => {
     try{
-        const {name , crNumber , gender, age, category, department, room, visitDate, visitTime} = req.body;
-        const patient =  await Patient.create({name , cr_number:crNumber, gender, age , category, department, room, visitDate, visitTime});
+        const patient =  await Patient.create({
+      ...req.body,
+      submittedBy: req.user.user,
+      designation:req.user.designation // ✅ Store filename
+    });
         res.status(201).json({ message: 'Patient registered successfully', patient });
     }catch(error){
         res.status(400).json({error: error.message})
@@ -13,9 +16,11 @@ exports.registerPatient = async(req , res) => {
 
 exports.submitTriage = async(req, res) => {
     try{
-        const patientId = req.params.id;
-        const {status, hr, spo2, bp,rr,rbs,emergencyType, date, time, triage, triageNotes} = req.body;
-        const triageDetails = await PatientTriage.create({status, hr, spo2, bp,rr,rbs,emergencyType, date, time, triage, triageNotes, patient_id:patientId});
+        const triageDetails = await PatientTriage.create({
+      ...req.body,
+      submittedBy: req.user.user,
+      designation:req.user.designation // ✅ Store filename
+    });
         res.status(201).json({ message: 'triageDetails registered successfully', triageDetails });
     }catch(error){
         res.status(400).json({error: error.message})

@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel.js');
 
-const TransferOut = sequelize.define('TransferOut', {
+const TransferOut = sequelize.define('TransferOut', istTimestamps({
   patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -12,25 +13,7 @@ const TransferOut = sequelize.define('TransferOut', {
     },
     onDelete: 'CASCADE'
   },
-
-  // Common Fields
-  name: {
-    type: DataTypes.STRING
-  },
-  age: {
-    type: DataTypes.STRING
-  },
-  sex: {
-    type: DataTypes.STRING
-  },
-  guardian_name: {
-    type: DataTypes.STRING
-  },
-  address: {
-    type: DataTypes.TEXT
-  },
-
-  // Transfer Out Slip Section
+ // Transfer Out Slip Section
   referred_date: {
     type: DataTypes.DATEONLY
   },
@@ -61,7 +44,7 @@ const TransferOut = sequelize.define('TransferOut', {
   treatment_received: {
     type: DataTypes.TEXT
   },
-  submitted_by:{
+  submittedBy:{
     type: DataTypes.STRING,
     allowNull:false
   },
@@ -69,7 +52,7 @@ const TransferOut = sequelize.define('TransferOut', {
     type: DataTypes.STRING,
     allowNull:false
   }
-}, {
+}), {
   tableName: 'transfer_out',
   underscored: true
 });

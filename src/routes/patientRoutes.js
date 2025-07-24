@@ -4,7 +4,7 @@ const patientController = require('../controllers/patientController')
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.post('/registerPatient',authMiddleware, patientController.registerPatient);
-router.post('/addTriage/:id',authMiddleware, patientController.submitTriage);
+router.post('/addTriage',authMiddleware, patientController.submitTriage);
 router.get('/patientDetails/:patientId',authMiddleware,patientController.getPatientTriage);
 router.get('/patientList',authMiddleware, patientController.getPatientList);
 router.get('/patientList/triage',authMiddleware, patientController.getPatientListWithTriage)

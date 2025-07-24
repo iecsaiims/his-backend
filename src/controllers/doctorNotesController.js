@@ -15,7 +15,7 @@ exports.createGeneralEmergencyCare = async (req, res) => {
 
     const data = await GeneralEmergencyCare.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation // Injected from token
     });
 
@@ -62,7 +62,7 @@ exports.createTraumaTemplate = async(req, res) => {
 
     const data = await TraumaTemplate.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
 
@@ -110,7 +110,7 @@ exports.createProgressNotes = async (req, res) => {
 
     const data = await ProgressNotes.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation: req.user.designation
     });
 

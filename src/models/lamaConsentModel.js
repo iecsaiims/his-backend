@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel');
 
-const LamaConsent = sequelize.define('LamaConsent', {
+const LamaConsent = sequelize.define('LamaConsent', istTimestamps({
   patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -12,24 +13,6 @@ const LamaConsent = sequelize.define('LamaConsent', {
     },
     onDelete: 'CASCADE'
   },
-
-  // Common Fields
-  name: {
-    type: DataTypes.STRING
-  },
-  age: {
-    type: DataTypes.STRING
-  },
-  sex: {
-    type: DataTypes.STRING
-  },
-  guardian_name: {
-    type: DataTypes.STRING
-  },
-  address: {
-    type: DataTypes.TEXT
-  },
-
   lamaConsentDocument: {
     type: DataTypes.TEXT,
     allowNull:false
@@ -42,8 +25,7 @@ const LamaConsent = sequelize.define('LamaConsent', {
       type:DataTypes.STRING,
       allowNull:false
     }
-
-}, {
+}), {
   tableName: 'lama_consent',
   underscored: true
 });

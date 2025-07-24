@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.js');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel.js');
 
-const PatientTriage = sequelize.define('PatientTriage', {
+const PatientTriage = sequelize.define('PatientTriage', istTimestamps({
   status: {
     type: DataTypes.STRING,
     allowNull: false
@@ -54,8 +55,16 @@ const PatientTriage = sequelize.define('PatientTriage', {
       key: 'id'
     },
     onDelete: 'CASCADE'
+  },
+  submittedBy:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  designation:{
+    type:DataTypes.STRING,
+    allowNull:false
   }
-}, {
+}), {
   tableName: 'patient_triages',
   underscored: true
 });

@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel');
 
-const BloodGas = sequelize.define('BoodGas', {
+const BloodGas = sequelize.define('BoodGas',istTimestamps({
     
     patientId: {
         type: DataTypes.INTEGER,
@@ -43,7 +44,7 @@ const BloodGas = sequelize.define('BoodGas', {
     bloodGasImage: {
         type: DataTypes.TEXT
     },
-    submitted_by: {
+    submittedBy: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -51,7 +52,7 @@ const BloodGas = sequelize.define('BoodGas', {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, {
+}), {
     tableName: 'blood_gas',
     underscored: true
 });

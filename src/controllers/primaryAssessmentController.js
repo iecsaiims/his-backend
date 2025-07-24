@@ -16,7 +16,9 @@ exports.createPrimaryAssessment = async (req, res) => {
     
     const record = await PrimaryAssessment.create({
       patientId,
-      ...assessmentData
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
     
     res.status(201).json({

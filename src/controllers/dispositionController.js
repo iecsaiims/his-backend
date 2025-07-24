@@ -14,7 +14,7 @@ exports.createDischargeSummary = async(req, res) => {
 
     const data = await DischargeSummary.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
 
@@ -60,7 +60,7 @@ exports.createTransferOut = async(req, res) => {
     
     const data = await TransferOut.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
 

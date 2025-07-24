@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Patient = require('./patientModel')
+const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel');
 
-const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
+const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', istTimestamps({
   patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -11,7 +12,6 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
       key: 'id'
     }
   },
-
   chief_complains: {
     type:DataTypes.TEXT,
   },
@@ -27,7 +27,7 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
   why_today: {
     type:DataTypes.TEXT,
   },
-   general_physical_examination: {
+  general_physical_examination: {
     type:DataTypes.TEXT,
   },
   systemic_examination: {
@@ -42,7 +42,7 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
   emergency_further_management_plan: {
     type:DataTypes.TEXT,
   },
-  submitted_by:{
+  submittedBy:{
     type:DataTypes.STRING,
     allowNull:false
   },
@@ -51,7 +51,7 @@ const GeneralEmergencyCare = sequelize.define('GeneralEmergencyCare', {
     allowNull:false
   }
 
-}, {
+}), {
   tableName: 'general_emergency_care',
   underscored: true,
 });

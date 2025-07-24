@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
+const istTimestamps = require('./baseModel');
 
-const CtScan = sequelize.define('CtScan', {
+const CtScan = sequelize.define('CtScan',istTimestamps({
   patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -34,7 +35,7 @@ const CtScan = sequelize.define('CtScan', {
     allowNull:false
   }
 
-}, {
+}), {
   tableName: 'ct_scan',
   underscored: true
 });

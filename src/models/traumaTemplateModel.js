@@ -123,7 +123,7 @@ const TraumaTemplate = sequelize.define('TraumaTemplate', {
     type: DataTypes.TEXT,
     allowNull: true
   },
-  submitted_by:{
+  submittedBy:{
     type:DataTypes.STRING,
     allowNull:false
   },

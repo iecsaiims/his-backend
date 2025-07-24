@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const istTimestamps = require('./baseModel.js');
 
-const PrimaryAssessment = sequelize.define('PrimaryAssessment', {
+const PrimaryAssessment = sequelize.define('PrimaryAssessment', istTimestamps({
   patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -145,9 +146,17 @@ const PrimaryAssessment = sequelize.define('PrimaryAssessment', {
   assessment_other: {
     type: DataTypes.TEXT,
     allowNull: true
+  },
+  submittedBy:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  designation:{
+    type:DataTypes.STRING,
+    allowNull:false
   }
 
-}, {
+}), {
   tableName: 'primary_assessment',
   underscored: true,
 });
