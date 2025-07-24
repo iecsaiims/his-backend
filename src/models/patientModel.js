@@ -18,7 +18,11 @@ const Patient = sequelize.define('Patient', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  category: {
+  guardianType: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  guardianName: {
     type: DataTypes.STRING,
     allowNull: false
   },

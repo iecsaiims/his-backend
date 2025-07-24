@@ -7,11 +7,15 @@ const storage = multer.diskStorage({
         //const folder = file.mimetype.startsWith('image/') ? 'images' : 'documents';
         //cb(null, path.join(__dirname, '../uploads/', folder));
     },
-    filename:(req, file , cb) =>{
-       // const ext = path.extname(file.originalname);
-       // const name = path.basename(file.originalname, ext).replace(/\s+/g, '_');
-        cb(null, `${req.body.name}-${Date.now()}-${file.originalname}`);
-    }  
+    // filename:(req, file , cb) =>{
+    //    // const ext = path.extname(file.originalname);
+    //    // const name = path.basename(file.originalname, ext).replace(/\s+/g, '_');
+    //    const patientName = req.formFields ? req.formFields.name : 'unknown';
+    //     cb(null, `${patientName}-${Date.now()}-${file.originalname}`);
+    // }  
+    filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+}
 });
 
 const fileFilter = (req, file, cb) =>{

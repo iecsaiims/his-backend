@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const Pocus = require('../models/pocusModel');
 const Xray = require('../models/xrayModel');
 const CtScan = require('../models/ctScanModel');
@@ -16,7 +18,7 @@ exports.createPocus = async (req, res) => {
     }); 
     const data = await Pocus.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
     res.status(201).json({
@@ -58,9 +60,10 @@ exports.createEcgRecord = async(req,res) => {
         req.body[key] = null;
       }
     });
+
     const ecg = await Ecg.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation,
       ecgImage: req.file.filename // ✅ Store filename
     });
@@ -107,7 +110,7 @@ exports.createBloodGasRecord = async(req,res) => {
     });
     const bloodGas = await BloodGas.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation,
       bloodGasImage: req.file.filename // ✅ Store filename
     });
@@ -154,7 +157,7 @@ exports.createTroponinRecord = async(req,res) => {
     });
     const troponin = await Troponin.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation, // ✅ Store filename
     });
     return res.status(201).json({
@@ -196,7 +199,7 @@ exports.createXrayRecord = async(req,res) => {
     const xray = await Xray.create({
       ...req.body,
       xrayImage: req.file.filename,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
     const response = fileService.attachFileUrl(xray, req, 'xrayImage');
@@ -244,7 +247,7 @@ exports.createCtScanRecord = async(req,res) => {
     const ctScan = await CtScan.create({
       ...req.body,
       ctScanImage: req.file.filename,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation
     });
     const response = fileService.attachFileUrl(ctScan, req, 'ctScanImage');
@@ -289,7 +292,7 @@ exports.createOtherTestRecord = async(req,res) => {
     });
     const otherTest = await OtherTest.create({
       ...req.body,
-      submitted_by: req.user.user,
+      submittedBy: req.user.user,
       designation:req.user.designation // ✅ Store filename
     });
     return res.status(201).json({

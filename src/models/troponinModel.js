@@ -21,7 +21,7 @@ const Troponin = sequelize.define('Troponin', {
     type: DataTypes.ENUM('Qualitative', 'Quantitative')
   },
   troponinInterpretaion: {
-    type: DataTypes.ENUM('Positive', 'Negative')
+    type: DataTypes.ENUM('Normal', 'Abnormal')
   },
   troponinValue: {
     type: DataTypes.STRING,
