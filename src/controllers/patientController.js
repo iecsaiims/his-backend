@@ -1,5 +1,19 @@
 const Patient = require('../models/patientModel');
 const PatientTriage = require('../models/patientTriageModel');
+const PrimaryAssessment = require('../models/primaryAssessmetModel');
+const GeneralEmergencyCare = require('../models/generalEmergencyCaseModel.js')
+const TraumaTemplate = require('../models/traumaTemplateModel.js')
+const ProgressNotes = require('../models/progressNotesModel.js')
+const TransferOut = require('../models/transferOutModel.js')
+const DischargeSummary = require('../models/dischargeSummayModel.js');
+const LamaConsent = require('../models/lamaConsentModel.js');
+const Xray = require('../models/xrayModel.js');
+const Pocus = require('../models/pocusModel.js');
+const Ecg = require('../models/ecgModel.js');
+const BloodGas = require('../models/bloodGasModel.js');
+const Troponin = require('../models/troponinModel.js');
+const OtherTest = require('../models/otherTestModel.js');
+const CtScan = require('../models/ctScanModel.js');
 
 exports.registerPatient = async(req , res) => {
     try{
@@ -117,5 +131,111 @@ exports.getAllTriageRecords = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.getPatientSummary = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+
+    const [
+      patientDetails,
+      triageDetails,
+      primaryAssesment,
+      generalEmergencyCare,
+      traumaTemplates,
+      progressNotes,
+      otherTests,
+      ctScan,
+      xray,
+      pocus,
+      ecg,
+      bloodGas,
+      troponin,
+      dischargeSummary,
+      transferOut,
+      lamaConsent
+    ] = await Promise.all([
+      Patient.findByPk(patientId),
+      PatientTriage.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      PrimaryAssessment.findOne({
+        where: { patient_id: patientId }
+      }),
+      GeneralEmergencyCare.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      TraumaTemplate.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      ProgressNotes.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      OtherTest.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      CtScan.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      Xray.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      Pocus.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      Ecg.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      BloodGas.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      Troponin.findAll({
+        where: { patient_id: patientId },
+        order: [['createdAt', 'DESC']]
+      }),
+      DischargeSummary.findOne({
+        where: { patient_id: patientId }
+      }),
+      TransferOut.findOne({
+        where: { patient_id: patientId }
+      }),
+      LamaConsent.findOne({
+        where: { patient_id: patientId }
+      })
+    ]);
+
+    res.status(200).json({
+      patientDetails,
+      triageDetails,
+      primaryAssesment,
+      generalEmergencyCare,
+      traumaTemplates,
+      progressNotes,
+      otherTests,
+      ctScan,
+      xray,
+      pocus,
+      ecg,
+      bloodGas,
+      troponin,
+      dischargeSummary,
+      transferOut,
+      lamaConsent
+    });
+  } catch (error) {
+    console.error('Error fetching patient summary:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 
 

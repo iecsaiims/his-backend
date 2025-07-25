@@ -9,5 +9,7 @@ router.get('/patientDetails/:patientId',authMiddleware,patientController.getPati
 router.get('/patientList',authMiddleware, patientController.getPatientList);
 router.get('/patientList/triage',authMiddleware, patientController.getPatientListWithTriage)
 router.get('/all-triages/:id',authMiddleware, patientController.getAllTriageRecords);
+router.get('/summary/:patientId',authMiddleware, patientController.getPatientSummary);;
+
 
 module.exports = router;

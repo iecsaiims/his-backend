@@ -9,7 +9,7 @@ const BloodGas = require('../models/bloodGasModel');
 const OtherTest = require('../models/otherTestModel');
 const fileService = require('../services/fileService');
 
-exports.createPocus = async (req, res) => {
+exports.createPocusRecord = async (req, res) => {
   try{
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
@@ -31,7 +31,7 @@ exports.createPocus = async (req, res) => {
   }
 }
 
-exports.getPocusDetails = async (req, res) => {
+exports.getPocusRecords = async (req, res) => {
   try {
     const { patientId } = req.params;
     const records = await Pocus.findAll({

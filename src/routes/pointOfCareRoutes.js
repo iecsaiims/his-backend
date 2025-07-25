@@ -18,5 +18,6 @@ router.post('/ecg', authMiddleware, upload.single('ecgImage'),renameUploadedFile
 router.get('/ecg/:patientId', authMiddleware, pointOfCareController.getEcgRecords);
 router.post('/xray', authMiddleware, upload.single('xrayImage'),renameUploadedFile('name'), pointOfCareController.createXrayRecord);
 router.get('/xray/:patientId', authMiddleware, pointOfCareController.getXrayRecords);
-
+router.post('/pocus', express.json(), authMiddleware, pointOfCareController.createPocusRecord);
+router.get('/pocus/:patientId', authMiddleware, pointOfCareController.getPocusRecords);
 module.exports = router;
