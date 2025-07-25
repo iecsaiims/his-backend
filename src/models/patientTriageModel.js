@@ -32,14 +32,6 @@ const PatientTriage = sequelize.define('PatientTriage', istTimestamps({
     type: DataTypes.STRING,
     allowNull: false
   },
-  date: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
-  },
-  time: {
-    type: DataTypes.TIME,
-    allowNull: false
-  },
   triage: {
     type: DataTypes.STRING,
     allowNull: false
