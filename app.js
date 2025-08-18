@@ -17,8 +17,9 @@ const primaryAssessmentRoutes = require('./src/routes/primaryAssessmentRoutes')
 const doctorNotesRoutes = require('./src/routes/doctorNotesRoutes')
 const fileRoutes = require('./src/routes/fileRoutes');
 const pointOfCareRoutes = require('./src/routes/pointOfCareRoutes');
-const dispositionRoutes = require('./src/routes/dispositionRoutes')
-
+const dispositionRoutes = require('./src/routes/dispositionRoutes');
+const invastigationRoutes = require('./src/routes/invastigationRoutes');
+const treatmentdetailsRoutes = require('./src/routes/treatmentdetailsRoutes');
 app.use((req, res, next) => {
   console.log('Headers:', req.headers);
   console.log('Body:', req.body);
@@ -32,9 +33,10 @@ app.use('/api/templates',express.json(),doctorNotesRoutes);
 app.use('/api/poc-tests', pointOfCareRoutes);
 app.use('/api/disposition',express.json(),dispositionRoutes);
 app.use('/api/files', fileRoutes);
+app.use('/api/invastigation', express.json(), invastigationRoutes);
+app.use('/api/treatment', express.json(), treatmentdetailsRoutes);
 
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 sequelize.sync().then(() => {
   console.log('Database synced');
