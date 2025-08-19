@@ -49,6 +49,14 @@ const Lft = sequelize.define('Lft',istTimestamps({
   globulin: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }), {
   tableName: 'lft',

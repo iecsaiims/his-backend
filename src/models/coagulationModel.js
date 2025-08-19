@@ -26,6 +26,14 @@ const Coagulation = sequelize.define('Coagulation',istTimestamps({
     type: DataTypes.FLOAT,
     allowNull: false
   },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 }), {
   tableName: 'coagulation',
   underscored: true

@@ -33,7 +33,15 @@ const Treatment = sequelize.define('Treatment',istTimestamps({
     specialInstructions: {
     type: DataTypes.TEXT,
     allowNull: false
-    }
+    },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 }), {
   tableName: 'treatment-details',
   underscored: true

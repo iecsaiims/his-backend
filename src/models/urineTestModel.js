@@ -22,6 +22,14 @@ const UrineTest = sequelize.define('UrineTest',istTimestamps({
     type: DataTypes.STRING,
     allowNull: false
   },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 }), {
   tableName: 'urine_test',
   underscored: true

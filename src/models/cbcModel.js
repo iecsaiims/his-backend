@@ -58,6 +58,14 @@ const Cbc = sequelize.define('Cbc',istTimestamps({
     type: DataTypes.STRING,
     allowNull: false
   },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 
 }), {
   tableName: 'cbc',

@@ -12,8 +12,13 @@ exports.createCbcRecord = async (req, res) => {
       }
     });
 
+    const { patientId, ...assessmentData } = req.body;
+
     const data = await Cbc.create({
-      ...req.body,
+      patientId,
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({
@@ -34,7 +39,7 @@ exports.getcbcRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await Cbc.findOne({ where: { patientId } });
+    const assessment = await Cbc.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
@@ -61,8 +66,13 @@ exports.createLftRecord = async (req, res) => {
       }
     });
 
+    const { patientId, ...assessmentData } = req.body;
+
     const data = await Lft.create({
-      ...req.body,
+      patientId,
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({
@@ -85,7 +95,7 @@ exports.getLftRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await Lft.findOne({ where: { patientId } });
+    const assessment = await Lft.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
@@ -112,8 +122,13 @@ exports.createRftRecord = async (req, res) => {
       }
     });
 
+    const { patientId, ...assessmentData } = req.body;
+
     const data = await Rft.create({
-      ...req.body,
+      patientId,
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({
@@ -135,7 +150,7 @@ exports.getRftRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await Rft.findOne({ where: { patientId } });
+    const assessment = await Rft.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
@@ -162,8 +177,13 @@ exports.createUrineTestRecord = async (req, res) => {
       }
     });
 
+    const { patientId, ...assessmentData } = req.body;
+
     const data = await UrineTest.create({
-      ...req.body,
+      patientId,
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({
@@ -184,7 +204,7 @@ exports.getUrineTestRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await UrineTest.findOne({ where: { patientId } });
+    const assessment = await UrineTest.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
@@ -211,8 +231,13 @@ exports.createCoagulationTestRecord = async (req, res) => {
       }
     });
 
+    const { patientId, ...assessmentData } = req.body;
+
     const data = await Coagulation.create({
-      ...req.body,
+      patientId,
+      ...assessmentData,
+      submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({
@@ -233,7 +258,7 @@ exports.getCoagulationTestRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await Coagulation.findOne({ where: { patientId } });
+    const assessment = await Coagulation.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res

@@ -19,7 +19,8 @@ const fileRoutes = require('./src/routes/fileRoutes');
 const pointOfCareRoutes = require('./src/routes/pointOfCareRoutes');
 const dispositionRoutes = require('./src/routes/dispositionRoutes');
 const investigationRoutes = require('./src/routes/investigationRoutes');
-const treatmentdetailsRoutes = require('./src/routes/treatmentdetailsRoutes');
+const treatmentDetailsRoutes = require('./src/routes/treatmentdetailsRoutes.js')
+const vitalsRoutes = require('./src/routes/vitalsRoutes');
 app.use((req, res, next) => {
   console.log('Headers:', req.headers);
   console.log('Body:', req.body);
@@ -34,7 +35,8 @@ app.use('/api/poc-tests', pointOfCareRoutes);
 app.use('/api/disposition',express.json(),dispositionRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/investigation', express.json(), investigationRoutes);
-app.use('/api/treatment', express.json(), treatmentdetailsRoutes);
+app.use('/api/treatment', express.json(), treatmentDetailsRoutes);
+app.use('/api/vitals', express.json(), vitalsRoutes);
 
 const PORT = process.env.PORT || 8000;
 

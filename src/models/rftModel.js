@@ -37,6 +37,14 @@ const Rft = sequelize.define('Rft',istTimestamps({
     uricAcid: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  submittedBy: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  designation: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }), {
   tableName: 'rft',
