@@ -19,38 +19,28 @@ const InOut = sequelize.define('InOut',istTimestamps({
             'IV Fluid','IV Medication', 'Medication', 'Oral Feeding', 'PBRC', 'Platelets', 'RT Aspiration'
             ,'Ryle Tube Feeding','Stool','Urine'),
     },
-    route: {
+    routeIn: {
         type: DataTypes.STRING
     },
-    pulseRate: {
-        type: DataTypes.INTEGER
-    },
-    volume: {
+    volumeIn: {
         type: DataTypes.STRING
     },
-    remarks: {
+    remarksIn: {
         type: DataTypes.TEXT
     },
-    allergies: {
+    outParameter:{
+        type: DataTypes.ENUM('Blood', 'Body Fluid', 'Drain','Feed','Frozen Plasma','Gastric Lavage',
+            'IV Fluid','IV Medication', 'Medication', 'Oral Feeding', 'PBRC', 'Platelets', 'RT Aspiration'
+            ,'Ryle Tube Feeding','Stool','Urine'),
+    },
+    routeOut: {
+        type: DataTypes.STRING
+    },
+    volumeOut: {
+        type: DataTypes.STRING
+    },
+    remarksOut:{
         type: DataTypes.TEXT
-    },
-    height: {
-        type: DataTypes.FLOAT
-    },
-    temperature: {
-        type: DataTypes.FLOAT
-    },
-    respiration: {
-        type: DataTypes.INTEGER
-    },
-    diastolicBp: {
-        type: DataTypes.INTEGER
-    },
-    spo2: {
-        type: DataTypes.INTEGER
-    },
-    rbs: {
-        type: DataTypes.INTEGER
     },
     submittedBy: {
         type: DataTypes.STRING,

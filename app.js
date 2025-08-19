@@ -21,6 +21,9 @@ const dispositionRoutes = require('./src/routes/dispositionRoutes');
 const investigationRoutes = require('./src/routes/investigationRoutes');
 const treatmentDetailsRoutes = require('./src/routes/treatmentdetailsRoutes.js')
 const vitalsRoutes = require('./src/routes/vitalsRoutes');
+const InOutRoutes = require('./src/routes/InOutRoutes.js');
+
+
 app.use((req, res, next) => {
   console.log('Headers:', req.headers);
   console.log('Body:', req.body);
@@ -37,6 +40,7 @@ app.use('/api/files', fileRoutes);
 app.use('/api/investigation', express.json(), investigationRoutes);
 app.use('/api/treatment', express.json(), treatmentDetailsRoutes);
 app.use('/api/vitals', express.json(), vitalsRoutes);
+app.use('/api/inout', express.json(), InOutRoutes);
 
 const PORT = process.env.PORT || 8000;
 

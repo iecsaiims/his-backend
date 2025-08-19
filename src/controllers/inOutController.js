@@ -1,6 +1,6 @@
-const VitalRecording = require('../models/vitalsRecordingModel');
+const InOut = require('../models/inOutModel');
 // CBC Record Controller
-exports.createVitalRecord = async (req, res) => {
+exports.createInOutRecord = async (req, res) => {
   try {
     Object.keys(req.body).forEach((key) => {
       if (req.body[key] === "") {
@@ -10,7 +10,7 @@ exports.createVitalRecord = async (req, res) => {
 
     const { patientId, ...assessmentData } = req.body;
 
-    const data = await VitalRecording.create({
+    const data = await InOut.create({
       patientId,
       ...assessmentData,
       submittedBy: req.user.user,
@@ -18,16 +18,16 @@ exports.createVitalRecord = async (req, res) => {
     });
 
     res.status(201).json({
-      message: "Vital record created successfully",
+      message: "Intake/Outtake record created successfully",
       data,
     });
   } catch (err) {
-    console.error("error creating vital record:", err);
+    console.error("error creating intake/outtake record:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-exports.getVitalRecord = async (req, res) => {
+exports.getInOutRecord = async (req, res) => {
   try {
     const { patientId } = req.params;
 
@@ -40,15 +40,15 @@ exports.getVitalRecord = async (req, res) => {
     if (!assessment) {
       return res
         .status(404)
-        .json({ error: "vital record not found for this patient" });
+        .json({ error: "Intake/Outtake record not found for this patient" });
     }
 
     res.status(200).json({
-      message: "vital record retrieved successfully",
+      message: "Intake/Outtake record retrieved successfully",
       data: assessment,
     });
   } catch (err) {
-    console.error("Error retrieving vital record:", err);
+    console.error("Error retrieving intake/outtake record:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
