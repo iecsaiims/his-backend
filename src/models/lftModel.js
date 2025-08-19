@@ -22,7 +22,7 @@ const Lft = sequelize.define('Lft',istTimestamps({
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  ibill: {
+  iBill: {
     type: DataTypes.FLOAT,
     allowNull: false
   },

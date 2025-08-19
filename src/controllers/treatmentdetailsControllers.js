@@ -30,7 +30,7 @@ exports.getTreatmentRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await treatmentDetails.findOne({ where: { patientId } });
+    const assessment = await treatmentDetails.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
