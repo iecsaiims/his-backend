@@ -15,27 +15,27 @@ const Rft = sequelize.define('Rft',istTimestamps({
   },
   // Common Fields
   urea: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     creatine: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     na: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     k: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     cl: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     uricAcid: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   }
 }), {

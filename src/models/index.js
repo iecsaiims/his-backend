@@ -16,6 +16,12 @@ const BloodGas = require('./bloodGasModel.js');
 const Troponin = require('./troponinModel.js');
 const OtherTest = require('./otherTestModel.js');
 const CtScan = require('./ctScanModel.js');
+const Cbc = require('./cbcModel.js');
+const Coagulation = require('./coagulationModel.js');
+const lft = require('./lftModel.js');
+const Rft = require('./rftModel.js');
+const Treatment = require('./treatmentModel.js');
+const UrineTest = require('./urineTestModel.js');
 
 Patient.hasMany(PatientTriage, {foreignKey: 'patient_id', as: 'patientTriage', onDelete: 'CASCADE'});
 PatientTriage.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -62,5 +68,22 @@ OtherTest.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 Patient.hasMany(CtScan, {foreignKey: 'patient_id', as: 'CtScan', onDelete: 'CASCADE'});
 CtScan.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
+Patient.hasMany(Cbc, {foreignKey: 'patient_id', as: 'Cbc', onDelete: 'CASCADE'});
+Cbc.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
-module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan};
+Patient.hasMany(Coagulation, {foreignKey: 'patient_id', as: 'Coagulation', onDelete: 'CASCADE'});
+Coagulation.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(lft, {foreignKey: 'patient_id', as: 'lft', onDelete: 'CASCADE'});
+lft.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(Rft, {foreignKey: 'patient_id', as: 'Rft', onDelete: 'CASCADE'});
+Rft.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(Treatment, {foreignKey: 'patient_id', as: 'Treatment', onDelete: 'CASCADE'});
+Treatment.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(UrineTest, {foreignKey: 'patient_id', as: 'UrineTest', onDelete: 'CASCADE'});
+UrineTest.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan, Cbc, Coagulation, lft, Rft, Treatment, UrineTest};

@@ -22,12 +22,12 @@ const Coagulation = sequelize.define('Coagulation',istTimestamps({
     type: DataTypes.FLOAT,
     allowNull: false
   },
-    d_dimer: {
+    dDimer: {
     type: DataTypes.FLOAT,
     allowNull: false
   },
 }), {
-  tableName: 'Coagulation',
+  tableName: 'coagulation',
   underscored: true
 });
 

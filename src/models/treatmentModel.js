@@ -23,11 +23,11 @@ const Treatment = sequelize.define('Treatment',istTimestamps({
     allowNull: false
     },
     frequency: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     route: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false
   },
     specialInstructions: {

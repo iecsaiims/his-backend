@@ -14,40 +14,40 @@ const Lft = sequelize.define('Lft',istTimestamps({
     onDelete: 'CASCADE'
   },
   // Common Fields
- tBill: {
-    type: DataTypes.FLOAT,
+  tBill: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   dBill: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   iBill: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
-    ast: {  
-    type: DataTypes.FLOAT,
+  ast: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   alt: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   alp: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   totalProtein: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   albumin: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   globulin: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   }
 }), {

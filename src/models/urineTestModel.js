@@ -15,15 +15,15 @@ const UrineTest = sequelize.define('UrineTest',istTimestamps({
   },
   // Common Fields
   urineRoutineMicroscopy: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false
   },
-    urineDipstick: {
-    type: DataTypes.FLOAT,
+  urineDipstick: {
+    type: DataTypes.STRING,
     allowNull: false
   },
 }), {
-  tableName: 'urineTest',
+  tableName: 'urine_test',
   underscored: true
 });
 
