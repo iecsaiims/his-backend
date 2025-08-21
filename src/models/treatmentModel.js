@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 const istTimestamps = require('./baseModel');
+// const Treatment = require('./treatmentModel');
 
 const Treatment = sequelize.define('Treatment',istTimestamps({
   patientId: {
@@ -33,6 +34,14 @@ const Treatment = sequelize.define('Treatment',istTimestamps({
     specialInstructions: {
     type: DataTypes.TEXT,
     allowNull: false
+    },
+     treatmentDate: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    treatmentTime: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   submittedBy: {
     type: DataTypes.STRING,

@@ -7,9 +7,12 @@ exports.createTreatmentRecord = async (req, res) => {
         req.body[key] = null;
       }
     });
-
+const { patientId, ...assessmentData } = req.body;
     const data = await treatmentDetails.create({
-      ...req.body,
+        patientId,
+      ...assessmentData,
+       submittedBy: req.user.user,
+      designation:req.user.designation
     });
 
     res.status(201).json({

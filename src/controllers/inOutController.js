@@ -35,7 +35,7 @@ exports.getInOutRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await VitalRecording.findAll({ where: { patientId } });
+    const assessment = await InOut.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
