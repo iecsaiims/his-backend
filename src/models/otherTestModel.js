@@ -18,28 +18,28 @@ const OtherTest = sequelize.define('OtherTest', istTimestamps({
     allowNull:true
   },
   proBnpInterpretaion: {
-    type: DataTypes.ENUM('Normal', 'Abnormal')
+    type: DataTypes.ENUM('Negative', 'Positive')
   },
   dDimerValue: {
     type: DataTypes.STRING,
     allowNull:true
   },
   dDimerInterpretaion: {
-    type: DataTypes.ENUM('Normal', 'Abnormal')
+    type: DataTypes.ENUM('Negative', 'Positive')
   },
   crpValue: {
     type: DataTypes.STRING,
     allowNull:true
   },
   crpInterpretaion: {
-    type: DataTypes.ENUM('Normal', 'Abnormal')
+    type: DataTypes.ENUM('Negative', 'Positive')
   },
   esrValue: {
     type: DataTypes.STRING,
     allowNull:true
   },
   esrInterpretaion: {
-    type: DataTypes.ENUM('Normal', 'Abnormal')
+    type: DataTypes.ENUM('Negative', 'Positive')
   },
   submittedBy:{
     type:DataTypes.STRING,

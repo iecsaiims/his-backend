@@ -14,14 +14,18 @@ const UrineTest = sequelize.define('UrineTest',istTimestamps({
     onDelete: 'CASCADE'
   },
   // Common Fields
-  urineRoutineMicroscopy: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  urineDipstick: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
+ketones: {
+  type: DataTypes.STRING,
+  allowNull: true
+},
+nitrites: {
+  type: DataTypes.STRING,
+  allowNull: true
+},
+urineCulture: {
+  type: DataTypes.STRING,
+  allowNull: true
+},
   submittedBy: {
     type: DataTypes.STRING,
     allowNull: false

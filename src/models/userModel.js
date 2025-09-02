@@ -21,7 +21,10 @@ const User = sequelize.define('User', istTimestamps({
         allowNull: false,
     },
   designation: {
-    type: DataTypes.ENUM('Doctor', 'Nursing Staff', 'Others'),
+    type: DataTypes.ENUM('Doctor', 'Nursing-Staff', 'Registration-desk', 'Triage-officer' , 'Admin' , 'Master'),
+  },
+  role: {
+    type: DataTypes.ENUM('d', 'n', 'r', 't' , 'a' , 'm'),
   },
 }), {
   tableName: 'users',

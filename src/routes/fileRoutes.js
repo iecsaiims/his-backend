@@ -5,7 +5,7 @@ const fs = require('fs');
 const authMiddleware = require('../middlewares/authMiddleware'); // Your JWT verify middleware
 
 // GET /api/files/:filename
-router.get('/:filename', authMiddleware, (req, res) => {
+router.get('/:filename', (req, res) => {
   const { filename } = req.params;
 
   const filePath = path.join(__dirname, '../../uploads', filename);

@@ -17,7 +17,6 @@ const PrimaryAssessment = sequelize.define('PrimaryAssessment', istTimestamps({
     type: DataTypes.ENUM('Yes', 'No'),
     allowNull: true
   },
-
   // Breathing
   rr: {
     type: DataTypes.INTEGER,
@@ -39,11 +38,14 @@ const PrimaryAssessment = sequelize.define('PrimaryAssessment', istTimestamps({
     type: DataTypes.STRING,
     allowNull: true
   },
-  gross_added_sounds: {
+  gross_added_sounds_Left: {
     type: DataTypes.STRING,
     allowNull: true
   },
-
+  gross_added_sounds_right: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   // Circulation
   pulse_rate: {
     type: DataTypes.INTEGER,

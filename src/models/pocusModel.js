@@ -16,7 +16,8 @@ const Pocus = sequelize.define('Pocus', istTimestamps({
 
   // Common Fields
   protocol: {
-    type: DataTypes.ENUM('eFAST', 'RUSH', 'BLUE', 'MSK')
+     type: DataTypes.TEXT,
+    allowNull:true
   },
   findings: {
     type: DataTypes.TEXT,

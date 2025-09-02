@@ -30,14 +30,14 @@ const Patient = sequelize.define('Patient', istTimestamps({
   address: {
     type: DataTypes.TEXT
   },
-  department:{
-    type:DataTypes.STRING,
-    allowNull:false
-  },
-  room:{
-    type:DataTypes.STRING,
-    allowNull:false
-  },
+  // department:{
+  //   type:DataTypes.STRING,
+  //   allowNull:false
+  // },
+  // room:{
+  //   type:DataTypes.STRING,
+  //   allowNull:false
+  // },
   submittedBy:{
     type:DataTypes.STRING,
     allowNull:false

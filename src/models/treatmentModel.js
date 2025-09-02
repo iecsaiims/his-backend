@@ -31,10 +31,10 @@ const Treatment = sequelize.define('Treatment',istTimestamps({
     type: DataTypes.STRING,
     allowNull: false
   },
-    specialInstructions: {
-    type: DataTypes.TEXT,
-    allowNull: false
-    },
+    // specialInstructions: {
+    // type: DataTypes.TEXT,
+    // allowNull: false
+    // },
      treatmentDate: {
       type: DataTypes.DATE,
       allowNull: true,
