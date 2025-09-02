@@ -25,6 +25,8 @@ const UrineTest = require('./urineTestModel.js');
 const VitalRecording = require('./vitalsRecordingModel.js');
 const InOut = require('./inOutModel.js');
 const HandoverNotes = require('./handoverNotes.js');
+const TreatmentNursing = require('./treatmentNursingModel.js');
+const EdConsultation = require('./edConsultation.js');
 
 Patient.hasMany(PatientTriage, {foreignKey: 'patient_id', as: 'patientTriage', onDelete: 'CASCADE'});
 PatientTriage.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -98,4 +100,10 @@ InOut.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 Patient.hasMany(HandoverNotes, {foreignKey: 'patientId', as: 'handoverNotes', onDelete: 'CASCADE'});
 HandoverNotes.belongsTo(Patient, {foreignKey: 'patientId', as: 'patient'});
 
-module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan, Cbc, Coagulation, lft, Rft, Treatment, UrineTest, VitalRecording, InOut, HandoverNotes};
+Patient.hasMany(TreatmentNursing, {foreignKey: 'patientId', as: 'treatmentNursing', onDelete: 'CASCADE'});
+TreatmentNursing.belongsTo(Patient, {foreignKey: 'patientId', as: 'patient'});  
+
+Patient.hasMany(EdConsultation, {foreignKey: 'patientId', as: 'edConsultations', onDelete: 'CASCADE'});
+EdConsultation.belongsTo(Patient, {foreignKey: 'patientId', as: 'patient'});
+
+module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan, Cbc, Coagulation, lft, Rft, Treatment, UrineTest, VitalRecording, InOut, HandoverNotes, TreatmentNursing, EdConsultation};

@@ -1,7 +1,6 @@
-const treatmentDetails = require('../models/treatmentModel');
 const TreatmentNursing = require('../models/treatmentNursingModel');
 // CBC Record Controller
-exports.createTreatmentRecord = async (req, res) => {
+exports.createTreatmentNursingRecord = async (req, res) => {
   try {
     Object.keys(req.body).forEach((key) => {
       if (req.body[key] === "") {
@@ -9,7 +8,7 @@ exports.createTreatmentRecord = async (req, res) => {
       }
     });
 const { patientId, ...assessmentData } = req.body;
-    const data = await treatmentDetails.create({
+    const data = await TreatmentNursing.create({
         patientId,
       ...assessmentData,
        submittedBy: req.user.user,
@@ -26,7 +25,7 @@ const { patientId, ...assessmentData } = req.body;
   }
 };
 
-exports.getTreatmentRecord = async (req, res) => {
+exports.getTreatmentNursingRecord = async (req, res) => {
   try {
     const { patientId } = req.params;
 
@@ -34,7 +33,7 @@ exports.getTreatmentRecord = async (req, res) => {
       return res.status(400).json({ error: "Patient ID is required" });
     }
 
-    const assessment = await treatmentDetails.findAll({ where: { patientId } });
+    const assessment = await TreatmentNursing.findAll({ where: { patientId } });
 
     if (!assessment) {
       return res
@@ -48,27 +47,6 @@ exports.getTreatmentRecord = async (req, res) => {
     });
   } catch (err) {
     console.error("Error retrieving treatment record:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-exports.getFullTreatmentDetails = async (req, res) => {
-  try {
-    const { patientId } = req.params;
-    if (!patientId) {
-      return res.status(400).json({ error: "Patient ID is required" });
-    }
-
-    const treatment = await treatmentDetails.findAll({ where: { patientId } });
-    const nursing = await TreatmentNursing.findAll({ where: { patientId } });
-
-    res.status(200).json({
-      message: "Full treatment details retrieved successfully",
-      treatment,
-      nursing
-    });
-  } catch (err) {
-    console.error("Error retrieving full treatment details:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };

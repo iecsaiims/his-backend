@@ -23,6 +23,7 @@ const treatmentDetailsRoutes = require('./src/routes/treatmentdetailsRoutes.js')
 const vitalsRoutes = require('./src/routes/vitalsRoutes');
 const InOutRoutes = require('./src/routes/InOutRoutes.js');
 const handoverNotesRoutes = require('./src/routes/handoverNotesRoutes.js');
+const consultationRoutes = require('./src/routes/consultationRoutes.js');
 
 
 app.use((req, res, next) => {
@@ -43,6 +44,7 @@ app.use('/api/treatment', express.json(), treatmentDetailsRoutes);
 app.use('/api/vitals', express.json(), vitalsRoutes);
 app.use('/api/inout', express.json(), InOutRoutes);
 app.use('/api/handover-notes', express.json(),handoverNotesRoutes);
+app.use('/api/ed-consultation',consultationRoutes);
 
 const PORT = process.env.PORT || 8000;
 
