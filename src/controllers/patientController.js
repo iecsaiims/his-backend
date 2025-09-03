@@ -23,6 +23,7 @@ const UrineTest = require("../models/urineTestModel.js");
 const VitalRecording = require("../models/vitalsRecordingModel.js");
 const InOut = require("../models/inOutModel.js");
 const HandoverNotes = require("../models/handoverNotes.js");
+const TreatmentNursing = require("../models/treatmentNursingModel.js");
 exports.registerPatient = async (req, res) => {
   try {
     const patient = await Patient.create({
@@ -191,7 +192,9 @@ exports.getPatientSummary = async (req, res) => {
       urineTest,
       vitalRecording,
       inOut,
-      handoverNotes
+      handoverNotes,
+      coagulation,
+      treatmentNursing
     ] = await Promise.all([
       Patient.findByPk(patientId),
       PatientTriage.findAll({
@@ -281,6 +284,14 @@ exports.getPatientSummary = async (req, res) => {
       HandoverNotes.findAll({
         where: { patientId: patientId },
         order: [["createdAt", "DESC"]],
+      }),
+      Coagulation.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
+      TreatmentNursing.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
       })
     ]);
 
@@ -308,10 +319,49 @@ exports.getPatientSummary = async (req, res) => {
       urineTest,
       vitalRecording,
       inOut,
-      handoverNotes
+      handoverNotes,
+      coagulation,
+      treatmentNursing
     });
   } catch (error) {
     console.error("Error fetching patient summary:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.getPatientNursingSummary = async (req, res) => {
+  const { patientId } = req.params;
+
+  try {
+    const [patientDetails, treatmentNursing, vitalRecording, inOut, handoverNotes] = await Promise.all([
+      Patient.findByPk(patientId),
+      TreatmentNursing.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
+      VitalRecording.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
+      InOut.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
+      HandoverNotes.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      })
+    ]);
+
+    res.status(200).json({
+      patientDetails,
+      treatmentNursing,
+      vitalRecording,
+      inOut,
+      handoverNotes
+    });
+  } catch (error) {
+    console.error("Error fetching patient nursing summary:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
