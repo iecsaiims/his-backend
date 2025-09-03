@@ -14,6 +14,10 @@ const HandoverNotes = sequelize.define('HandoverNotes',istTimestamps({
         },
         onDelete: 'CASCADE'
     },
+      date: { 
+        type: DataTypes.DATE,
+        allowNull: false
+    },
     shift: {
         type: DataTypes.ENUM('Morning', 'Afternoon', 'Evening')
     },

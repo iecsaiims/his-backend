@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const Patient = require('./patientModel');
 const istTimestamps = require('./baseModel');
-
+const Treatment = require('./treatmentModel');
 const TreatmentNursing = sequelize.define('TreatmentNursing', istTimestamps({
     patientId: {
         type: DataTypes.INTEGER,
@@ -13,9 +13,19 @@ const TreatmentNursing = sequelize.define('TreatmentNursing', istTimestamps({
         },
         onDelete: 'CASCADE',
     },
-    givenDose: {
-        type: DataTypes.TEXT
+    treatmentId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Treatment,
+            key: 'id',
+        },
+        onDelete: 'CASCADE',
     },
+    // Common Fields
+    // givenDose: {
+    //     type: DataTypes.TEXT
+    // },
     nextDose: {
         type: DataTypes.TEXT
     },
