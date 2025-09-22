@@ -1,6 +1,7 @@
 const DischargeSummary = require('../models/dischargeSummayModel');
 const TransferOut = require('../models/transferOutModel');
 const LamaConsent = require('../models/lamaConsentModel');
+const Admission = require('../models/admissionModel');
 const fileService = require('../services/fileService');
 
 exports.createDischargeSummary = async(req, res) => {
@@ -144,6 +145,60 @@ exports.getLamaConsent = async (req, res) => {
     return res.status(200).json({ data: response });
   } catch (err) {
     console.error('Error fetching LAMA consent:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+
+
+
+exports.createAdmission = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'Admission consent document is required.' });
+    }
+    Object.keys(req.body).forEach(key => {
+      if (req.body[key] === '') {
+        req.body[key] = null;
+      }
+    });
+    const AdmissionConsent = await Admission.create({
+      ...req.body,
+      wardConsentDocument: req.file.filename,
+      submittedBy: req.user.user,
+      designation:req.user.designation
+    });
+    const response = fileService.attachFileUrl(AdmissionConsent, req, 'wardConsentDocument');
+    return res.status(201).json({
+      message: 'ward Consent created successfully',
+      data: response
+    });
+  } catch (error) {
+    console.error('Error creating ward consent:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// GET all records or by patient_id
+exports.getAdmissionConsent = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+    if (!patientId) {
+      return res.status(400).json({ message: 'Patient ID is required' });
+    }
+    const records = await Admission.findAll({
+      where: { patient_id: patientId }
+    });
+    if (!records.length) {
+      return res.status(404).json({ message: 'No ward consent found for this patient' });
+    }
+    const response = records.map(record =>
+      fileService.attachFileUrl(record, req, 'wardConsentDocument')
+    );
+    return res.status(200).json({ data: response });
+  } catch (err) {
+    console.error('Error fetching ward consent:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 };

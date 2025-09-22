@@ -7,6 +7,7 @@ const ProgressNotes = require("../models/progressNotesModel.js");
 const TransferOut = require("../models/transferOutModel.js");
 const DischargeSummary = require("../models/dischargeSummayModel.js");
 const LamaConsent = require("../models/lamaConsentModel.js");
+const Admission = require("../models/admissionModel.js");
 const Xray = require("../models/xrayModel.js");
 const Pocus = require("../models/pocusModel.js");
 const Ecg = require("../models/ecgModel.js");
@@ -24,6 +25,8 @@ const VitalRecording = require("../models/vitalsRecordingModel.js");
 const InOut = require("../models/inOutModel.js");
 const HandoverNotes = require("../models/handoverNotes.js");
 const TreatmentNursing = require("../models/treatmentNursingModel.js");
+const EdConsultation = require("../models/edConsultation.js");
+const DiagnosisRecord = require("../models/diagnosisRecordModel.js")
 exports.registerPatient = async (req, res) => {
   try {
     const patient = await Patient.create({
@@ -186,6 +189,7 @@ exports.getPatientSummary = async (req, res) => {
       dischargeSummary,
       transferOut,
       lamaConsent,
+      admission,
       lft,
       rft,
       treatment,
@@ -194,7 +198,9 @@ exports.getPatientSummary = async (req, res) => {
       inOut,
       handoverNotes,
       coagulation,
-      treatmentNursing
+      treatmentNursing,
+      edConsultation,
+      diagnosisRecord
     ] = await Promise.all([
       Patient.findByPk(patientId),
       PatientTriage.findAll({
@@ -257,6 +263,9 @@ exports.getPatientSummary = async (req, res) => {
       LamaConsent.findOne({
         where: { patient_id: patientId },
       }),
+      Admission.findOne({
+        where: { patient_id: patientId },
+      }),
       Lft.findAll({
         where: { patient_id: patientId },
         order: [["createdAt", "DESC"]],
@@ -292,7 +301,15 @@ exports.getPatientSummary = async (req, res) => {
       TreatmentNursing.findAll({
         where: { patient_id: patientId },
         order: [["createdAt", "DESC"]],
-      })
+      }),
+      EdConsultation.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
+      DiagnosisRecord.findAll({
+        where: { patient_id: patientId },
+        order: [["createdAt", "DESC"]],
+      }),
     ]);
 
     res.status(200).json({
@@ -313,6 +330,7 @@ exports.getPatientSummary = async (req, res) => {
       dischargeSummary,
       transferOut,
       lamaConsent,
+      admission,
       lft,
       rft,
       treatment,
@@ -321,7 +339,9 @@ exports.getPatientSummary = async (req, res) => {
       inOut,
       handoverNotes,
       coagulation,
-      treatmentNursing
+      treatmentNursing,
+      edConsultation,
+      diagnosisRecord
     });
   } catch (error) {
     console.error("Error fetching patient summary:", error);

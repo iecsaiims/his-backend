@@ -11,6 +11,7 @@ router.post('/transfer-out',authMiddleware, dispositionController.createTransfer
 router.get('/transfer-out/:patientId',authMiddleware, dispositionController.getTransferOutByPatient);
 router.post('/lama',authMiddleware, upload.single('lamaConsentDocument'),renameUploadedFile('name'), dispositionController.createLamaConsent);
 router.get('/lama/:patientId',authMiddleware, dispositionController.getLamaConsent);
-
+router.post('/admission',authMiddleware, upload.single('AdmissionConsentDocument'),renameUploadedFile('name'), dispositionController.createAdmission);
+router.get('/admission/:patientId',authMiddleware, dispositionController.getAdmissionConsent);
 
 module.exports = router;

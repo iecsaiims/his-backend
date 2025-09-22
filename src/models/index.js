@@ -9,6 +9,7 @@ const ProgressNotes = require('./progressNotesModel.js')
 const TransferOut = require('./transferOutModel.js')
 const DischargeSummary = require('./dischargeSummayModel.js');
 const LamaConsent = require('./lamaConsentModel.js');
+const Admission = require('./admissionModel.js');
 const Xray = require('./xrayModel.js');
 const Pocus = require('./pocusModel.js');
 const Ecg = require('./ecgModel.js');
@@ -27,6 +28,7 @@ const InOut = require('./inOutModel.js');
 const HandoverNotes = require('./handoverNotes.js');
 const TreatmentNursing = require('./treatmentNursingModel.js');
 const EdConsultation = require('./edConsultation.js');
+const DiagnosisRecord = require('./diagnosisRecordModel.js');
 
 Patient.hasMany(PatientTriage, {foreignKey: 'patient_id', as: 'patientTriage', onDelete: 'CASCADE'});
 PatientTriage.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -51,6 +53,9 @@ DischargeSummary.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
 Patient.hasMany(LamaConsent, {foreignKey: 'patient_id', as: 'LamaConsent', onDelete: 'CASCADE'});
 LamaConsent.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
+
+Patient.hasMany(Admission, {foreignKey: 'patient_id', as: 'Admission', onDelete: 'CASCADE'});
+Admission.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
 
 Patient.hasMany(Xray, {foreignKey: 'patient_id', as: 'Xray', onDelete: 'CASCADE'});
 Xray.belongsTo(Patient, {foreignKey: 'patient_id',as: 'patient'});
@@ -106,4 +111,7 @@ TreatmentNursing.belongsTo(Patient, {foreignKey: 'patientId', as: 'patient'});
 Patient.hasMany(EdConsultation, {foreignKey: 'patientId', as: 'edConsultations', onDelete: 'CASCADE'});
 EdConsultation.belongsTo(Patient, {foreignKey: 'patientId', as: 'patient'});
 
-module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan, Cbc, Coagulation, lft, Rft, Treatment, UrineTest, VitalRecording, InOut, HandoverNotes, TreatmentNursing, EdConsultation};
+Patient.hasMany(DiagnosisRecord, { foreignKey: 'patientId', as: 'DiagnosisRecords', onDelete: 'CASCADE' });
+DiagnosisRecord.belongsTo(Patient, { foreignKey: 'patientId', as: 'patient' });
+
+module.exports = { sequelize, User, Patient, PatientTriage, PrimaryAssessment,GeneralEmergencyCare, TraumaTemplate, ProgressNotes, TransferOut,DischargeSummary, LamaConsent, Admission, Xray,Pocus, Ecg, BloodGas, Troponin, OtherTest, CtScan, Cbc, Coagulation, lft, Rft, Treatment, UrineTest, VitalRecording, InOut, HandoverNotes, TreatmentNursing, EdConsultation, DiagnosisRecord };

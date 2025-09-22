@@ -33,7 +33,7 @@ const EdConsultation = sequelize.define('EdConsultation', istTimestamps({
     },
     consultationImage: {
         type: DataTypes.TEXT,
-        allowNull:true
+        allowNull:false
     },
     submittedBy: {
         type: DataTypes.STRING,

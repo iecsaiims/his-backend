@@ -14,27 +14,24 @@ const BloodGas = sequelize.define('BoodGas',istTimestamps({
         },
         onDelete: 'CASCADE'
     },
-    sample: {
+    bloodGasType: {
         type: DataTypes.ENUM('Arterial', 'Venous')
     },
-    ph: {
-        type: DataTypes.STRING
-    },
-    pco2: {
-        type: DataTypes.STRING
-    },
-    hco3: {
-        type: DataTypes.STRING
-    },
-    na: {
-        type: DataTypes.STRING
-    },
-    k: {
-        type: DataTypes.STRING
-    },
-    cl: {
-        type: DataTypes.STRING
-    },
+      ph: { type: DataTypes.STRING },
+      cohb: { type: DataTypes.STRING },     
+      pco2: { type: DataTypes.STRING },
+      mchb: { type: DataTypes.STRING },  
+      hco3: { type: DataTypes.STRING },
+      na: { type: DataTypes.STRING },
+      be: { type: DataTypes.STRING },    
+      k: { type: DataTypes.STRING },
+      hct: { type: DataTypes.STRING },   
+      ca: { type: DataTypes.STRING },
+      hb: { type: DataTypes.STRING },
+      mosm: { type: DataTypes.STRING },     
+      so2: { type: DataTypes.STRING },   
+      glu: { type: DataTypes.STRING },    
+      lac: { type: DataTypes.STRING }, 
     bloodGasOther: {
         type: DataTypes.STRING
     },

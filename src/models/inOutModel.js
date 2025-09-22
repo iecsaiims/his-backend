@@ -72,9 +72,9 @@ const InOut = sequelize.define(
         "Urine"
       ),
     },
-    routeOut: {
-      type: DataTypes.STRING,
-    },
+    // routeOut: {
+    //   type: DataTypes.STRING,
+    // },
     volumeOut: {
       type: DataTypes.STRING,
     },

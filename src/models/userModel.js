@@ -21,10 +21,10 @@ const User = sequelize.define('User', istTimestamps({
         allowNull: false,
     },
   designation: {
-    type: DataTypes.ENUM('Doctor', 'Nursing-Staff', 'Registration-desk', 'Triage-officer' , 'Admin' , 'Master'),
+    type: DataTypes.ENUM('Doctor', 'Nursing-Staff', 'Registration-desk', 'Triage-officer' , 'Admin' , 'Faculty'),
   },
   role: {
-    type: DataTypes.ENUM('d', 'n', 'r', 't' , 'a' , 'm'),
+    type: DataTypes.ENUM('d', 'n', 'r', 't' , 'a' , 'f'),
   },
 }), {
   tableName: 'users',

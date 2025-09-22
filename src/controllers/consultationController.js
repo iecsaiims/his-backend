@@ -1,10 +1,10 @@
 const EdConsultation = require('../models/edConsultation');
-
+const fileService = require('../services/fileService');
 exports.createEdConsultation = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'Consultation image is required.' });
-    }
+    // if (!req.file) {
+    //   return res.status(400).json({ error: 'Consultation image is required.' });
+    // }
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
