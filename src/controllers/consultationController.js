@@ -48,3 +48,22 @@ exports.getEdConsultationRecords = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
+exports.getAllEdConsultationRecords = async (req, res) => {
+  try {
+    const records = await EdConsultation.findAll();
+
+    if (!records || records.length === 0) {
+      return res.status(404).json({
+        message: "No consultation records found for this patient"
+      });
+    }
+
+    return res.status(200).json({ data: records });
+
+  } catch (err) {
+    console.error("Error fetching consultation records:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};

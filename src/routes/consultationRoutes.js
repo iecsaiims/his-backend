@@ -7,5 +7,6 @@ const renameUploadedFile = require('../middlewares/renameUploadedFile');
 
 router.post('/consultation', authMiddleware, upload.single('consultationImage'), renameUploadedFile('name'), edConsultationController.createEdConsultation);
 router.get('/consultation/:patientId', authMiddleware, edConsultationController.getEdConsultationRecords);
+router.get('/consultations', authMiddleware, edConsultationController.getAllEdConsultationRecords);
 
 module.exports = router;

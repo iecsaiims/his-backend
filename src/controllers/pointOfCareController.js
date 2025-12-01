@@ -51,29 +51,30 @@ exports.getPocusRecords = async (req, res) => {
 };
 
 exports.createEcgRecord = async(req,res) => {
-  try{
-     if (!req.file) {
-      return res.status(400).json({ error: 'ecg image is required.' });
-    }
+ try {
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
       }
     });
 
+    const ecgImage = req.file ? req.file.filename : null;
+
     const ecg = await Ecg.create({
       ...req.body,
       submittedBy: req.user.user,
-      designation:req.user.designation,
-      ecgImage: req.file.filename // ✅ Store filename
+      designation: req.user.designation,
+      ecgImage
     });
+
     const response = fileService.attachFileUrl(ecg, req, 'ecgImage');
+
     return res.status(201).json({
-      message: 'ecg record created successfully',
+      message: 'ECG record created successfully',
       data: response
     });
-  }catch(err){
-    console.error('Error fetching ecg details:', err);
+  } catch (err) {
+    console.error('Error creating ECG record:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -100,19 +101,20 @@ exports.getEcgRecords = async (req, res) => {
 
 exports.createBloodGasRecord = async(req,res) => {
   try{
-     if (!req.file) {
-      return res.status(400).json({ error: 'Blood gas image is required.' });
-    }
+    //  if (!req.file) {
+    //   return res.status(400).json({ error: 'Blood gas image is required.' });
+    // }
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
       }
     });
+    const bloodGasImage = req.file ? req.file.filename : null;
     const bloodGas = await BloodGas.create({
       ...req.body,
       submittedBy: req.user.user,
       designation:req.user.designation,
-      bloodGasImage: req.file.filename // ✅ Store filename
+      bloodGasImage// ✅ Store filename
     });
     const response = fileService.attachFileUrl(bloodGas,req, 'bloodGasImage');
     return res.status(201).json({
@@ -185,17 +187,18 @@ exports.getTroponinRecords = async (req, res) => {
 
 exports.createXrayRecord = async(req,res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'Xray image is required.' });
-    }
+    // if (!req.file) {
+    //   return res.status(400).json({ error: 'Xray image is required.' });
+    // }
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
       }
     });
+     const xrayImage = req.file ? req.file.filename : null;    
     const xray = await Xray.create({
       ...req.body,
-      xrayImage: req.file.filename,
+      xrayImage,
       submittedBy: req.user.user,
       designation:req.user.designation
     });
@@ -233,17 +236,18 @@ exports.getXrayRecords = async (req, res) => {
 };
 exports.createCtScanRecord = async(req,res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'CT Scan image is required.' });
-    }
+    // if (!req.file) {
+    //   return res.status(400).json({ error: 'CT Scan image is required.' });
+    // }
     Object.keys(req.body).forEach(key => {
       if (req.body[key] === '') {
         req.body[key] = null;
       }
     });
+    const ctScanImage = req.file ? req.file.filename : null;
     const ctScan = await CtScan.create({
       ...req.body,
-      ctScanImage: req.file.filename,
+      ctScanImage,
       submittedBy: req.user.user,
       designation:req.user.designation
     });
