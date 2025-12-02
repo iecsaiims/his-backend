@@ -24,6 +24,7 @@ const InOutRoutes = require("./src/routes/InOutRoutes.js");
 const handoverNotesRoutes = require("./src/routes/handoverNotesRoutes.js");
 const consultationRoutes = require("./src/routes/consultationRoutes.js");
 const diagnosisRoutes = require("./src/routes/diagnosisRoutes.js");
+const encRoutes = require("./src/routes/encRoutes.js");
 app.use((req, res, next) => {
   console.log("Headers:", req.headers);
   console.log("Body:", req.body);
@@ -48,6 +49,7 @@ app.get("/api/test", async (req, res) => {
   res.status(200).json({ message: "API is working" });
 });
 const PORT = process.env.PORT || 3003;
+app.use("/api/enc", express.json(), encRoutes);
 
 sequelize
   .sync()

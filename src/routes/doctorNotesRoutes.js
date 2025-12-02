@@ -15,7 +15,4 @@ router.post('/trauma-template',authMiddleware, doctorNotesController.createTraum
 router.get('/trauma-template/:patientId',authMiddleware, doctorNotesController.getTraumaTemplateByPatient);
 router.post('/progress-notes', authMiddleware,doctorNotesController.createProgressNotes);
 router.get('/progress-notes/:patientId',authMiddleware, doctorNotesController.getProgressNotesByPatient);
-
-
-
 module.exports = router;

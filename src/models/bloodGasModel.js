@@ -39,7 +39,8 @@ const BloodGas = sequelize.define('BoodGas',istTimestamps({
         type: DataTypes.TEXT
     },
     bloodGasImage: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull:true
     },
     submittedBy: {
         type: DataTypes.STRING,

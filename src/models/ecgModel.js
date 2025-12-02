@@ -16,7 +16,8 @@ const Ecg = sequelize.define('Ecg',istTimestamps({
 
   // Common Fields
   ecgImage: {
-    type: DataTypes.TEXT
+    type: DataTypes.TEXT,
+    allowNull:true
   },
   ecgFindings: {
     type: DataTypes.TEXT,
