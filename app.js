@@ -44,7 +44,10 @@ app.use("/api/inout", express.json(), InOutRoutes);
 app.use("/api/handover-notes", express.json(), handoverNotesRoutes);
 app.use("/api/ed-consultation", consultationRoutes);
 app.use("/api/diagnosis", express.json(), diagnosisRoutes);
-const PORT = process.env.PORT || 8000;
+app.get("/api/test", async (req, res) => {
+  res.status(200).json({ message: "API is working" });
+});
+const PORT = process.env.PORT || 3003;
 
 sequelize
   .sync()
