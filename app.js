@@ -25,6 +25,7 @@ const handoverNotesRoutes = require("./src/routes/handoverNotesRoutes.js");
 const consultationRoutes = require("./src/routes/consultationRoutes.js");
 const diagnosisRoutes = require("./src/routes/diagnosisRoutes.js");
 const encRoutes = require("./src/routes/encRoutes.js");
+const doctorWorkflowRoutes = require("./src/routes/doctorWorkflowRoutes");
 app.use((req, res, next) => {
   console.log("Headers:", req.headers);
   console.log("Body:", req.body);
@@ -45,10 +46,12 @@ app.use("/api/inout", express.json(), InOutRoutes);
 app.use("/api/handover-notes", express.json(), handoverNotesRoutes);
 app.use("/api/ed-consultation", consultationRoutes);
 app.use("/api/diagnosis", express.json(), diagnosisRoutes);
+app.use("/api", express.json(), doctorWorkflowRoutes);
+const PORT = process.env.PORT || 3003;
 app.get("/api/test", async (req, res) => {
   res.status(200).json({ message: "API is working" });
 });
-const PORT = process.env.PORT || 3003;
+
 app.use("/api/enc", express.json(), encRoutes);
 
 sequelize
